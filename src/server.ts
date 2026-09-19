@@ -1,9 +1,19 @@
-import app from "@/app";
-import env from "@/config/env";
+import app from '@/app';
+import { ENV } from '@/config/env';
 
-const port = env.PORT;
+const startServer = () => {
+  try {
+    app.listen(ENV.PORT, () => {
+      console.log('--------------------------------------------------');
+      console.log(`🚀 ${ENV.APP_NAME} started successfully!`);
+      console.log(`📡 URL: ${ENV.BACKEND_URL}`);
+      console.log(`🌍 MODE: ${ENV.NODE_ENV}`);
+      console.log('--------------------------------------------------');
+    });
+  } catch (error) {
+    console.error('❌ CRITICAL: Could not start the engine:', error);
+    process.exit(1);
+  }
+};
 
-app.listen(port, () => {
-  console.log(`API running at ${env.BACKEND_URL}`);
-  console.log(`Environment: ${env.NODE_ENV}`);
-});
+startServer();

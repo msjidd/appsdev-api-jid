@@ -1,19 +1,12 @@
-import dotenv from "dotenv";
-
+import dotenv from 'dotenv';
 dotenv.config();
 
-function getEnv(variable: string, fallback = ""): string {
-  return process.env[variable] ?? fallback;
-}
-
-const env = {
-  APP_NAME: getEnv("APP_NAME", "AppsDev API Tutorial"),
-  PORT: Number(getEnv("PORT", "7000")),
-  NODE_ENV: getEnv("NODE_ENV", "development"),
-  JWT_SECRET: getEnv("JWT_SECRET", "fallback_secret_change_me"),
-  BACKEND_URL: getEnv("BACKEND_URL", "http://localhost:7000"),
-  FRONTEND_URL: getEnv("FRONTEND_URL", "http://localhost:3000"),
-  DATABASE_URL: getEnv("DATABASE_URL", ""),
+export const ENV = {
+  APP_NAME: process.env.APP_NAME || 'Portfolio API',
+  PORT: parseInt(process.env.PORT || '7000', 10),
+  NODE_ENV: process.env.NODE_ENV || 'development',
+  JWT_SECRET: process.env.JWT_SECRET || 'fallback_secret_change_me',
+  FRONTEND_URL: process.env.FRONTEND_URL || 'http://localhost:3000',
+  BACKEND_URL: process.env.BACKEND_URL || 'http://localhost:8000',
+  DATABASE_URL: process.env.DATABASE_URL,
 };
-
-export default env;
